@@ -1,0 +1,19 @@
+{
+  "name": "alf",
+  "version": "1.0.0",
+  "description": "alf bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "2.1.4",
+    "body-parser": "1.16.0",
+    "express": "4.14.0",
+    "imdb-api": "2.2.1",
+    "node-wit": "4.2.0",
+    "request": "2.79.0"
+  }
+}
