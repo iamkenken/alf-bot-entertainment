@@ -21,13 +21,13 @@ class FBeamer {
 		// If req.query.hub.mode is 'subscribe'
 		// and if req.query.hub.verify_token is the same as this.VERIFY_TOKEN
 		// then send back an HTTP status 200 and req.query.hub.challenge
-		console.log(req.query.hub.challenge);
-		let {
-			mode,
-			verify_token,
-			challenge
-		} = req.query.hub;
-
+		console.log(req.query);
+		// let {
+		// 	mode,
+		// 	verify_token,
+		// 	challenge
+		// } = req.query.hub;
+		let mode = req.query["hub.mode"], verify_token = req.query["hub.verify_token"], challenge = req.query["hub.challenge"];
 		if(mode === 'subscribe' && verify_token === this.VERIFY_TOKEN) {
 			return res.end(challenge);
 		} else {
