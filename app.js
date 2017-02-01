@@ -84,6 +84,22 @@ app.post('/', (req, res, next) => {
 					context.action = 'tv';
 					session.update(sessionId, context);
 				break;
+				case 'MENU_TV_LOCAL':
+					p.tvLocal(sender, f);
+					context.action = 'tv';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_TV_LOCAL_PROVIDERS':
+					p.tvLocalProviders(sender, f);
+				break;
+				case 'MENU_TV_CABLE':
+					p.tvCable(sender, f);
+					context.action = 'tv';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_TV_CABLE_PROVIDERS':
+					p.tvCableProviders(sender, f);
+				break;
 				case 'MENU_NOW_SHOWING':
 					p.nowshowinggeneric(sender, f);
 					context.action = 'now_showing';
@@ -104,32 +120,41 @@ app.post('/', (req, res, next) => {
 					context.action = 'online';
 					session.update(sessionId, context);
 				break;
+				case 'MENU_ONLINE_PROVIDERS':
+					p.onlineProviders(sender, f);
+					context.action = 'online';
+					session.update(sessionId, context);
+				break;
 				case 'MENU_CABLE':
+					p.cableFeatured(sender, f);
+					context.action = 'cable';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_CABLE_PROVIDERS':
 					p.cableProviders(sender, f);
 					context.action = 'cable';
 					session.update(sessionId, context);
 				break;
-				case 'MENU_SKY':
-					p.skyFeatured(sender, f);
-					context.action = 'sky';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_CIGNAL':
-					p.skyFeatured(sender, f);
-					context.action = 'cignal';
-					session.update(sessionId, context);
-				break;
 				case 'MENU_EVENTS':
 					p.events(sender, f);
-					context.action = 'events';
-					context.eventType = '';
-					session.update(sessionId, context);
 				break;
-				case 'MENU_TV_FEATURED':
-					p.tvFeatured(sender, f);
+				case 'MENU_MUSIC':
+					p.eventsCategories(sender, f, 'music');
 				break;
-				case 'MENU_TV_TRENDING':
-					p.tvFeatured(sender, f);
+				case 'MENU_SHOWS':
+					p.eventsCategories(sender, f, 'shows');
+				break;
+				case 'MENU_CONVENTIONS':
+					p.eventsCategories(sender, f, 'conventions');
+				break;
+				case 'MENU_SPORTS':
+					p.eventsCategories(sender, f, 'sports');
+				break;
+				case 'MENU_CAMPUS':
+					p.eventsCategories(sender, f, 'campus');
+				break;
+				case 'MENU_EVENT_OTHER':
+					p.eventsCategories(sender, f, 'other');
 				break;
 				default:
 					
@@ -163,8 +188,46 @@ app.post('/', (req, res, next) => {
 					context.eventLocation = '';
 					session.update(sessionId, context);
 				break;
+				case 'music':
+					p.eventsCategories(sender, f, 'music');
+				break;
+				case 'shows':
+					p.showEvents(sender, f);
+				break;
+				case 'conventions':
+					p.eventsCategories(sender, f, 'conventions');
+				break;
+				case 'sports & lifestyle':
+					p.showEvents(sender, f);
+				break;
+				case 'campus':
+					p.showEvents(sender, f);
+				break;
+				case 'others':
+					p.showEvents(sender, f);
+				break;
+				case 'gig':
+					p.showEvents(sender, f);
+				break;
+				case 'concert':
+					p.showEvents(sender, f);
+				break;
+				case 'fairs & exhibit':
+					p.showEvents(sender, f);
+				break;
+				case 'talks & workshop':
+					p.showEvents(sender, f);
+				break;
+				case 'conferences':
+					p.showEvents(sender, f);
+				break;
 				case 'now showing':
 					p.nowshowinggeneric(sender, f);
+					context.action = 'now_showing';
+					session.update(sessionId, context);
+				break;
+				case 'next attraction':
+					p.nextattraction(sender, f);
 					context.action = 'now_showing';
 					session.update(sessionId, context);
 				break;

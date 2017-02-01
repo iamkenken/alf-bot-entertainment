@@ -8,7 +8,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "payload":"GET_STARTED"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAZA2iZBHVGK8BAMl4jbMIqQBKz94qcyTXCUOf2sXVVIS4AJj8SwHYqyR1kVYiaStvK0QdL0ImLJHfGeV8phhxeRkothLBmFCFvzT7rYCN5S4PyVxWo7qsfklzs82AiVcT3Ui4NgiCL8ZAsgL9B4xc808YeEOWhFieyPvW3OAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAFQEb6oc8gBAKj9ij1MCw3TuUGpLDtfSJ5jZBZAafh2qro80QtE7NwqFeAGYbZB2BCUC2VARQZC2ysdHHL0fBWOdxh50OEjca0xTKwrx3SQz0L6S1Vh88zNuJFlWfdJ8yc2DqWVKZA6wMjZB5HQwXuoUGopm9KbWqMFagxlxlYQZDZD"
 
 //Greeting
 curl -X POST -H "Content-Type: application/json" -d '{
@@ -23,7 +23,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "setting_type" : "domain_whitelisting",
   "whitelisted_domains" : ["https://alfafusion.com"],
   "domain_action_type": "add"
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAZA2iZBHVGK8BAMl4jbMIqQBKz94qcyTXCUOf2sXVVIS4AJj8SwHYqyR1kVYiaStvK0QdL0ImLJHfGeV8phhxeRkothLBmFCFvzT7rYCN5S4PyVxWo7qsfklzs82AiVcT3Ui4NgiCL8ZAsgL9B4xc808YeEOWhFieyPvW3OAZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAFQEb6oc8gBAKj9ij1MCw3TuUGpLDtfSJ5jZBZAafh2qro80QtE7NwqFeAGYbZB2BCUC2VARQZC2ysdHHL0fBWOdxh50OEjca0xTKwrx3SQz0L6S1Vh88zNuJFlWfdJ8yc2DqWVKZA6wMjZB5HQwXuoUGopm9KbWqMFagxlxlYQZDZD"
 
 
 //Test page
@@ -36,7 +36,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "payload":"GET_STARTED"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAASVgAGJ3qgBALsVLGiVBbxu5pXSHx9Y9ENqNDNhPJljgQ1Yiu4DFXYCIBlInZByMELiNhD816zY9C4ixfDVbHRKhaZAWLZAM1UvZACpjRNLTrZAmBsYAckZARxUWsZAGKSscQcNKe5K6J9hKXW3ZBGzjqW4foMls9errWLj7fqU7QZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAOMe1sSR38BANcbZBoH7a7GUsaHhYHeVb6CR6aOCVcT686vZAOSHYsSas2Uznm5R3eZCpIToeTyMbC6LOuAgzcycuZAXWFmRSR53DfRcbTrPqrAIeCHCp7MP5RTc5fGPQHosAB0ScrKNNny8oHtl2tvgLnD55GRJyczdYzf4QZDZD"
 
 
 //Messenger extension whitelist domain
@@ -44,4 +44,4 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "setting_type" : "domain_whitelisting",
   "whitelisted_domains" : ["https://alfafusion.com"],
   "domain_action_type": "add"
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAASVgAGJ3qgBALsVLGiVBbxu5pXSHx9Y9ENqNDNhPJljgQ1Yiu4DFXYCIBlInZByMELiNhD816zY9C4ixfDVbHRKhaZAWLZAM1UvZACpjRNLTrZAmBsYAckZARxUWsZAGKSscQcNKe5K6J9hKXW3ZBGzjqW4foMls9errWLj7fqU7QZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAOMe1sSR38BANcbZBoH7a7GUsaHhYHeVb6CR6aOCVcT686vZAOSHYsSas2Uznm5R3eZCpIToeTyMbC6LOuAgzcycuZAXWFmRSR53DfRcbTrPqrAIeCHCp7MP5RTc5fGPQHosAB0ScrKNNny8oHtl2tvgLnD55GRJyczdYzf4QZDZD"

@@ -39,7 +39,7 @@ class postbacks {
                 }
                 text += ' '+alfmsg;
                 let servicesbuttons = f.servicesbuttons(text);
-                f.quick(sender, servicesbuttons);
+                f.btn(sender, servicesbuttons);
               } else {
                 f.txt(sender, ':( Sorry for inconvinient please come back later.')
               }
@@ -62,9 +62,56 @@ class postbacks {
     f.btn(sender, f.tvBtn(text));
   }
 
+  tvLocal(sender, f) {
+    let movies = [];
+    let moviename = ['A Violent Prosecutor', 'Seklusyon', 'Split', 'The Great Wall', 'xXx: Return of Xander Cage'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, `script/instruction here 🎥`);
+          setTimeout(function(){
+            f.generic(sender, f.tvLocalResult(movies));
+            setTimeout(function(){
+              f.btn(sender, f.tvLocalBtn('script here...'));
+            }, 1000);
+          }, 1000);
+        }
+    });
+    }
+    console.log(movies)
+  }
+
+  tvLocalProviders(sender, f) {
+    f.generic(sender, f.tvLocalProvidersData());
+  }
+
+  tvCable(sender, f) {
+    let movies = [];
+    let moviename = ['A Violent Prosecutor', 'Seklusyon', 'Split', 'The Great Wall', 'xXx: Return of Xander Cage'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, `script/instruction here 🎥`);
+          setTimeout(function(){
+            f.generic(sender, f.tvLocalResult(movies));
+            setTimeout(function(){
+              f.btn(sender, f.tvCableBtn('script here...'));
+            }, 1000);
+          }, 1000);
+        }
+    });
+    }
+    console.log(movies)
+  }
+
+  tvCableProviders(sender, f) {
+    f.generic(sender, f.cableProvidersData());
+  }
+
   nowshowinglist(sender, f) {
     f.list(sender, f.nowshowingdata());
-    let data = f.nowshowingdata();
   }
 
   nowshowinggeneric(sender, f) {
@@ -75,7 +122,12 @@ class postbacks {
         movies.push(things);
         if(len === movies.length) { 
           f.txt(sender, `script/instruction here 🎥`);
-          f.generic(sender, f.nowshowingdatageneric(movies));
+          setTimeout(function(){
+            f.generic(sender, f.nowshowingdatageneric(movies));
+            setTimeout(function(){
+              f.btn(sender, f.nsbtn('script here...'));
+            }, 1000);
+          }, 1000);
         }
     });
     }
@@ -89,7 +141,12 @@ class postbacks {
         movies.push(things);
         if(len === movies.length) { 
           f.txt(sender, `script/instruction here 🎥`);
+          setTimeout(function(){
           f.generic(sender, f.nowshowingdatageneric(movies));
+            setTimeout(function(){
+              f.btn(sender, f.nabtn('script here...'));
+            }, 1000);
+          }, 1000);
         }
     });
     }
@@ -103,7 +160,12 @@ class postbacks {
         movies.push(things);
         if(len === movies.length) { 
           f.txt(sender, `script/instruction here 🎥`);
-          f.generic(sender, f.nowshowingdatageneric(movies));
+          setTimeout(function(){
+          f.generic(sender, f.csMovies(movies));
+            setTimeout(function(){
+              f.btn(sender, f.csbtn('script here...'));
+            }, 1000);
+          },1000);
         }
     });
     }
@@ -117,7 +179,38 @@ class postbacks {
         movies.push(things);
         if(len === movies.length) { 
           f.txt(sender, `Featured Movies 🎥`);
+          setTimeout(function() {
           f.generic(sender, f.onlineFeaturedData(movies));
+            setTimeout(function(){
+              f.btn(sender, f.onlinebtn('script here...'));
+            }, 1000);
+          }, 1000);
+        }
+    });
+    }
+  }
+
+  onlineProviders(sender, f) {
+    f.txt(sender, `script here...`);
+    setTimeout(function(){
+      f.generic(sender, f.onlineProvidersBtn('script here'));
+    }, 1000)
+  }
+
+  cableFeatured(sender, f) {
+    let movies = [];
+    let moviename = ['The Veil', 'BATMAN & ROBIN', 'THE TRANSPORTER REFUELED', 'ROBIN HOOD: MEN IN TIGHTS', 'SUPERMAN II', 'MORTAL KOMBAT ANNIHILATION'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, `script/instruction here 🎥`);
+          setTimeout(function(){
+            f.generic(sender, f.cableFeaturedData(movies));
+            setTimeout(function(){
+              f.btn(sender, f.cableBtn('script here..'));
+            },1000);
+          },1000)
         }
     });
     }
@@ -125,16 +218,31 @@ class postbacks {
 
   cableProviders(sender, f) {
     let text = cablemsg;
-    f.generic(sender, f.providersData());
+    f.generic(sender, f.cableProvidersData());
   }
 
   events(sender, f) {
     let text = eventmsg;
-    f.quick(sender, f.eventsdata(text));
+    f.quick(sender, f.eventsCategoryBtn(text));
+  }
+
+  eventsCategories(sender, f, parentCat) {
+    switch (parentCat) {
+      case 'music':
+        f.quick(sender, f.eventsSubCat('script here', parentCat));
+      break;
+      case 'conventions':
+        f.quick(sender, f.eventsSubCat('script here', parentCat));
+      break;
+      default:
+    }
   }
 
   showEvents(sender, f) {
     f.generic(sender, f.eventsResult());
+    setTimeout(function(){
+      f.btn(sender, f.eventResultBtn('script here'));
+    }, 1000)
   }
 
   btnEvents(sender, f) {
@@ -155,20 +263,7 @@ class postbacks {
     }
   }
 
-  skyFeatured(sender, f) {
-    let movies = [];
-    let moviename = ['The Veil', 'BATMAN & ROBIN', 'THE TRANSPORTER REFUELED', 'ROBIN HOOD: MEN IN TIGHTS', 'SUPERMAN II', 'MORTAL KOMBAT ANNIHILATION'];
-    for(let i = 0, len = moviename.length; i < len; i++) {
-    imdb.getReq({ name: moviename[i]}, (err, things) => {
-        movies.push(things);
-        if(len === movies.length) { 
-          f.txt(sender, `script/instruction here 🎥`);
-          f.generic(sender, f.skyFeaturedData(movies));
-        }
-    });
-    }
-    console.log(movies);
-  }
+  
 
 }
 

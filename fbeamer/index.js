@@ -288,7 +288,7 @@ class FBeamer {
 
 
 
-	servicesbuttons(text) {
+	servicesquick(text) {
 		let buttons ={
 	    "text":text,
 	    "quick_replies":[
@@ -304,6 +304,31 @@ class FBeamer {
 	      },
 				{
 	        "content_type":"text",
+	        "title":"Events",
+	        "payload":"MENU_EVENTS"
+	      }
+	    ]
+	  };
+
+		return buttons;
+	}
+
+	servicesbuttons(text) {
+		let buttons ={
+	    "text":text,
+	    "buttons":[
+	      {
+	        "type":"postback",
+	        "title":"Movies",
+	        "payload":"MENU_MOVIES"
+	      },
+				{
+	        "type":"postback",
+	        "title":"TV Shows",
+	        "payload":"MENU_TV"
+	      },
+				{
+	        "type":"postback",
 	        "title":"Events",
 	        "payload":"MENU_EVENTS"
 	      }
@@ -363,7 +388,67 @@ class FBeamer {
 		return data;
 	}
 
-	nowshowingdata() {
+	nsbtn(text) {
+		let data ={
+			"text":text,
+			"buttons":[
+			  {
+			    "type":"postback",
+			    "title":"Next Attraction",
+			    "payload":"MENU_NEXT_ATTRACTION"
+			  },
+			  {
+			    "type":"postback",
+			    "title":"Coming Soon",
+			    "payload":"MENU_COMING_SOON"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	nabtn(text) {
+		let data ={
+			"text":text,
+			"buttons":[
+			  {
+			    "type":"postback",
+			    "title":"Now Showing",
+			    "payload":"MENU_NOW_SHOWING"
+			  },
+			  {
+			    "type":"postback",
+			    "title":"Coming Soon",
+			    "payload":"MENU_COMING_SOON"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	csbtn(text) {
+		let data ={
+			"text":text,
+			"buttons":[
+			  {
+			    "type":"postback",
+			    "title":"Now Showing",
+			    "payload":"MENU_NOW_SHOWING"
+			  },
+			  {
+			    "type":"postback",
+			    "title":"Next Attraction",
+			    "payload":"MENU_NEXT_ATTRACTION"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	listdata() {
 		let data = {
 			elements: [
 				{
@@ -374,7 +459,7 @@ class FBeamer {
 				        {
 				            "title": "Trailer",
 				            "type": "postback",
-				            "payload": "payload"
+				            "payload": "payload",
 				        },
 				        {
 				            "title": "More Info",
@@ -418,19 +503,61 @@ class FBeamer {
 				"subtitle": movies[i].plot.substring(0, 50)+'...\nRating: ★★★★☆',
 				"buttons":[
 					{
-						"type": "postback",
-						"title": "Trailer",
-						"payload": "payload"
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
-						"type": "postback",
+						"type": "web_url",
 						"title": "Where to Watch",
-						"payload": "payload"
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			});
+			if(len === data.length) {
+				data.push({
+				"title": 'Script/Instruction here..',
+				"buttons":[
+					{
 						"type": "postback",
-						"title": "More Info",
+						"title": "Show More",
 						"payload": "payload"
+					}
+				]
+			});
+			}
+		}
+		return data;
+	}
+
+	csMovies(movies) {
+		let data = [];
+		//console.log(movies.length);
+		for(let i = 0, len = movies.length; i < len; i++) {
+			data.push({
+				"title": movies[i].title,
+				"image_url":movies[i].poster,
+				"subtitle": movies[i].plot.substring(0, 50)+'...\nRating: ★★★★☆',
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "Trailer",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					}
 				]
 			});
@@ -460,76 +587,74 @@ class FBeamer {
 				"subtitle": movies[i].plot.substring(0, 50)+'...\nRating: ★★★★☆',
 				"buttons":[
 					{
-						"type": "postback",
-						"title": "Trailer",
-						"payload": "payload"
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
-						"type": "postback",
+						"type": "web_url",
 						"title": "Where to Watch",
-						"payload": "payload"
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
-						"type": "postback",
-						"title": "More Info",
-						"payload": "payload"
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					}
 				]
 			});
-			if(len === data.length) {
-				data.push({
-				"title": 'Script/Instruction here..',
-				"buttons":[
-					{
-						"type": "postback",
-						"title": "See Full List",
-						"payload": "payload"
-					},
-					{
-						"type": "postback",
-						"title": "Recommended",
-						"payload": "payload"
-					}
-				]
-			});
-			}
 		}
 		return data;
 	}
 
-	providersData() {
+	cableProvidersData() {
 		let data = [
 			{
-				    "title": "Sky Cable",
-				    "image_url": "http://2.bp.blogspot.com/-_-uObddnfXs/T7BejeyqA4I/AAAAAAAAEZQ/QDjYgu9tsBI/s1600/skycable_logo.gif",
-				    "subtitle": "description here",
-				    "buttons": [
-				        {
-				            "title": "Select",
-				            "type": "postback",
-				            "payload": "MENU_SKY"
-				        }
-				    ]
-				},
-				{
-				    "title": "Cignal",
-				    "image_url": "http://vmobilecavitephilippines.weebly.com/uploads/1/3/1/0/13101774/8059610_orig.jpg",
-				    "subtitle": "description here",
-				    "buttons": [
-				        {
-				            "title": "Select",
-				            "type": "postback",
-				            "payload": "MENU_CIGNAL"
-				        }
-				    ]
-				}
+			    "title": "Sky Cable",
+			    "image_url": "http://2.bp.blogspot.com/-_-uObddnfXs/T7BejeyqA4I/AAAAAAAAEZQ/QDjYgu9tsBI/s1600/skycable_logo.gif",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "type": "web_url",
+						"title": "Select",
+						"url": "https://google.com"
+			        }
+			    ]
+			},
+			{
+			    "title": "Destiny Cable",
+			    "image_url": "http://static01.global-free-classified-ads.com/user_images/6890289.jpg",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "type": "web_url",
+						"title": "Select",
+						"url": "https://google.com"
+			        }
+			    ]
+			},
+			{
+			    "title": "Cignal",
+			    "image_url": "http://vmobilecavitephilippines.weebly.com/uploads/1/3/1/0/13101774/8059610_orig.jpg",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "type": "web_url",
+						"title": "Select",
+						"url": "https://google.com"
+			        }
+			    ]
+			}
 		]
 
 		return data;
 	}
 
 
-	skyFeaturedData(movies) {
+	cableFeaturedData(movies) {
 		let data = [];
 		//console.log(movies.length);
 		for(let i = 0, len = movies.length; i < len; i++) {
@@ -539,25 +664,46 @@ class FBeamer {
 				"subtitle": movies[i].plot.substring(0, 50)+'...\nRating: ★★★★☆',
 				"buttons":[
 					{
-						"type": "postback",
-						"title": "Schedule",
-						"payload": "payload"
-					}
-				]
-			});
-			if(len === data.length) {
-				data.push({
-				"title": 'Script/Instruction here..',
-				"buttons":[
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
 					{
-						"type": "postback",
-						"title": "See Full List",
-						"payload": "payload"
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					}
 				]
 			});
-			}
 		}
+		return data;
+	}
+
+	cableBtn(text) {
+		let data ={
+			"text":text,
+			"buttons":[
+			  {
+			    "type":"web_url",
+			    "title":"See Full List",
+			    "url":"https://google.com"
+			  },
+			  {
+			    "type":"postback",
+			    "title":"Select Provider",
+			    "payload":"MENU_CABLE_PROVIDERS"
+			  }
+			]
+		};
+
 		return data;
 	}
 
@@ -571,14 +717,16 @@ class FBeamer {
 				"subtitle": movies[i].plot,
 				"buttons":[
 					{
-						"type": "postback",
+						"type": "web_url",
 						"title": "Where to Watch",
-						"payload": "payload"
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
-						"type": "postback",
-						"title": "More Info",
-						"payload": "payload"
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
 					}
 				]
 			});
@@ -586,17 +734,81 @@ class FBeamer {
 		return data;
 	}
 
-	onlineBtn(text) {
+	onlinebtn(text) {
 		let data ={
 			"text":text,
 			"buttons":[
 			  {
+			    "type":"web_url",
+			    "title":"See Full List",
+			    "url":"https://google.com"
+			  },
+			  {
 			    "type":"postback",
-			    "title":"Recommended",
-			    "payload":"MENU_ONLINE_RECOMMENDED"
+			    "title":"Select Provider",
+			    "payload":"MENU_ONLINE_PROVIDERS"
 			  }
 			]
 		};
+
+		return data;
+	}
+
+	onlineProvidersBtn(text) {
+		let data = [
+			{
+			    "title": "NETFLIX",
+			    "image_url": "https://lh4.googleusercontent.com/BbqN8GpAephpCNwTBuB8SiFTPT1zFccYyuPd4qRRQRTQPXU5d4F1wuVWfEJh3L4RL3wIKc6BeQ=s640-h400-e365",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "title": "Select",
+			            "type": "web_url",
+			            "url": "https://netflix.com",
+						"webview_height_ratio": "tall"
+			        }
+			    ]
+			},
+			{
+			    "title": "HOOQ",
+			    "image_url": "https://technoladyinmanila.files.wordpress.com/2015/10/hooq-logo-yellow.png",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "title": "Select",
+			            "type": "web_url",
+			            "url": "https://hooq.tv",
+						"webview_height_ratio": "tall"
+			        }
+			    ]
+			},
+			{
+			    "title": "IMOVIE",
+			    "image_url": "http://www.techmagnetism.com/wp-content/uploads/2016/02/maxresdefault-2.jpg",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "title": "Select",
+			            "type": "web_url",
+			            "url": "https://www.apple.com/imovie/",
+						"webview_height_ratio": "tall"
+			        }
+			    ]
+			},
+			{
+			    "title": "YOUTUBE",
+			    "image_url": "https://i.ytimg.com/vi/s5y-4EpmfRQ/maxresdefault.jpg",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "title": "Select",
+			            "type": "web_url",
+			            "url": "https://youtube.com",
+						"webview_height_ratio": "tall"
+			        }
+			    ]
+			}
+		]
 
 		return data;
 	}
@@ -607,13 +819,13 @@ class FBeamer {
 			"buttons":[
 			  {
 			    "type":"postback",
-			    "title":"Featured TV Shows",
-			    "payload":"MENU_TV_FEATURED"
+			    "title":"Local TV",
+			    "payload":"MENU_TV_LOCAL"
 			  },
 			  {
 			    "type":"postback",
-			    "title":"Trending",
-			    "payload":"MENU_TV_TRENDING"
+			    "title":"Cable Channels",
+			    "payload":"MENU_TV_CABLE"
 			  }
 			]
 		};
@@ -621,7 +833,7 @@ class FBeamer {
 		return data;
 	}
 
-	eventsdata(text) {
+	eventsCategoryBtn(text) {
 
 		let data ={
 			"text":text,
@@ -629,35 +841,83 @@ class FBeamer {
 			  {
 			    "content_type":"text",
 			    "title":"Music",
-			    "payload":"payload"
-			  },
-			  {
-			    "content_type":"text",
-			    "title":"Convention",
-			    "payload":"payload"
-			  },
-			  {
-			    "content_type":"text",
-			    "title":"Sports & Lifestyle",
-			    "payload":"payload"
+			    "payload":"MENU_MUSIC"
 			  },
 			  {
 			    "content_type":"text",
 			    "title":"Shows",
-			    "payload":"payload"
+			    "payload":"MENU_SHOWS"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"Conventions",
+			    "payload":"MENU_CONVENTIONS"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"Sports & Lifestyle",
+			    "payload":"MENU_SPORTS"
 			  },
 			  {
 			    "content_type":"text",
 			    "title":"Campus",
-			    "payload":"payload"
+			    "payload":"MENU_CAMPUS"
 			  },
 			  {
 			    "content_type":"text",
 			    "title":"Others",
-			    "payload":"payload"
+			    "payload":"MENU_EVENTS_OTHER"
 			  }
 			]
 		};
+
+		return data;
+	}
+
+	eventsSubCat(text, parentCat) {
+		let data;
+		switch (parentCat) {
+		case 'music':
+			data ={
+				"text":text,
+				"quick_replies":[
+				  {
+				    "content_type":"text",
+				    "title":"Concert",
+				    "payload":"MENU_CONCERT"
+				  },
+				  {
+				    "content_type":"text",
+				    "title":"Gig",
+				    "payload":"MENU_GIG"
+				  }
+				]
+			};
+		break;
+		case 'conventions':
+			data ={
+				"text":text,
+				"quick_replies":[
+				  {
+				    "content_type":"text",
+				    "title":"Fairs & Exhibit",
+				    "payload":"MENU_FAIRS"
+				  },
+				  {
+				    "content_type":"text",
+				    "title":"Talks & Workshop",
+				    "payload":"MENU_TALKS"
+				  },
+				  {
+				    "content_type":"text",
+				    "title":"Conferences",
+				    "payload":"MENU_CONFERENCES"
+				  }
+				]
+			};
+		break;
+		default:
+		}
 
 		return data;
 	}
@@ -670,14 +930,21 @@ class FBeamer {
 				"subtitle": "#HugotPlaylist with Ogie Alcasid, Ai Ai Delas Alas and Erik Santos with Special Guest Solenn Heusaff",
 				"buttons":[
 					{
-						"type": "postback",
+						"title": "Ticket Price",
+			            "type": "web_url",
+			            "url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
 						"title": "Full Details",
-						"payload": "payload"
+			            "type": "web_url",
+			            "url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
 						"type": "postback",
-						"title": "See Tickets",
-						"payload": "payload"
+						"title": "Remind Me",
+						"payload": "MENU_EVENT_REMIND"
 					}
 				]
 			},
@@ -687,14 +954,21 @@ class FBeamer {
 				"subtitle": "It'll surely a fun Valentines show as Vice Ganda takes over the Araneta Coliseum for the fifth time this February!",
 				"buttons":[
 					{
-						"type": "postback",
+						"title": "Ticket Price",
+			            "type": "web_url",
+			            "url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
 						"title": "Full Details",
-						"payload": "payload"
+			            "type": "web_url",
+			            "url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
 						"type": "postback",
-						"title": "See Tickets",
-						"payload": "payload"
+						"title": "Remind Me",
+						"payload": "MENU_EVENT_REMIND"
 					}
 				]
 			},
@@ -704,25 +978,21 @@ class FBeamer {
 				"subtitle": "First time ever! Goo Goo Dolls are coming to Manila! Come see their first Manila gig to be held on February 11, 2017 - Smart Araneta Coliseum",
 				"buttons":[
 					{
-						"type": "postback",
+						"title": "Ticket Price",
+			            "type": "web_url",
+			            "url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
 						"title": "Full Details",
-						"payload": "payload"
+			            "type": "web_url",
+			            "url": "https://google.com",
+						"webview_height_ratio": "tall"
 					},
 					{
 						"type": "postback",
-						"title": "See Tickets",
-						"payload": "payload"
-					}
-				]
-			},
-			{
-				"title": "More Options",
-				"subtitle": "Script/Instruction here...",
-				"buttons":[
-					{
-						"type": "postback",
-						"title": "See Full List",
-						"payload": "payload"
+						"title": "Remind Me",
+						"payload": "MENU_EVENT_REMIND"
 					}
 				]
 			}
@@ -731,27 +1001,128 @@ class FBeamer {
 		return data;
 	}
 
-	btnEventsData(text) {
+	eventResultBtn(text) {
+		let data ={
+			"text":text,
+			"buttons":[
+			  	{
+					"title": "See Full List",
+		            "type": "web_url",
+		            "url": "https://google.com",
+					"webview_height_ratio": "tall"
+				}
+			]
+		};
+
+		return data;
+	}
+
+	tvLocalResult(movies) {
+		let data = [];
+		//console.log(movies.length);
+		for(let i = 0, len = movies.length; i < len; i++) {
+			data.push({
+				"title": movies[i].title,
+				"image_url":movies[i].poster,
+				"subtitle": movies[i].plot.substring(0, 50)+'...\nRating: ★★★★☆',
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "See Details",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			});
+		}
+		return data;
+	}
+
+	tvLocalBtn(text) {
 		let data ={
 			"text":text,
 			"buttons":[
 			  {
-			    "type":"postback",
-			    "title":"Show more",
-			    "payload":"payload"
+			    "type":"web_url",
+			    "title":"See Full List",
+			    "url":"https://google.com"
 			  },
 			  {
 			    "type":"postback",
-			    "title":"New Search",
-			    "payload":"payload"
-			  },
-			  {
-			    "type":"postback",
-			    "title":"Get Weekly Updates",
-			    "payload":"payload"
+			    "title":"Select Provider",
+			    "payload":"MENU_TV_LOCAL_PROVIDERS"
 			  }
 			]
 		};
+
+		return data;
+	}
+
+	tvCableBtn(text) {
+		let data ={
+			"text":text,
+			"buttons":[
+			  {
+			    "type":"web_url",
+			    "title":"See Full List",
+			    "url":"https://google.com"
+			  },
+			  {
+			    "type":"postback",
+			    "title":"Select Provider",
+			    "payload":"MENU_TV_CABLE_PROVIDERS"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	tvLocalProvidersData() {
+		let data = [
+			{
+			    "title": "ABS CBN",
+			    "image_url": "http://www.megacities-go-services.com/var/ezdemo_site/storage/images/media/manila/images-manila/rss-import-logos/abs-cbn-news/84757-3-eng-GB/ABS-CBN-News_facebook_icon_large.jpg",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "type": "web_url",
+						"title": "Select",
+						"url": "https://google.com"
+			        }
+			    ]
+			},
+			{
+			    "title": "GMA",
+			    "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c0/GMA_Network_Logo_Vector.svg/1280px-GMA_Network_Logo_Vector.svg.png",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "type": "web_url",
+						"title": "Select",
+						"url": "https://google.com"
+			        }
+			    ]
+			},
+			{
+			    "title": "TV 5",
+			    "image_url": "http://www.tv5.com.ph/images/tv5.jpg",
+			    "subtitle": "description here",
+			    "buttons": [
+			        {
+			            "type": "web_url",
+						"title": "Select",
+						"url": "https://google.com"
+			        }
+			    ]
+			}
+		]
 
 		return data;
 	}
