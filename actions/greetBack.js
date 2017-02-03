@@ -5,23 +5,20 @@ const FBeamer = require('../fbeamer');
 const f = new FBeamer(config.FB);
 
 let randMsg = require('../messages');
-let greetrandNum = Math.floor((Math.random() * Object.keys(randMsg.greeting.message).length) + 0);
-let alfrandNum = Math.floor((Math.random() * Object.keys(randMsg.alfmsg.message).length) + 0);
-const greeting = randMsg.greeting.message[greetrandNum];
-const alfmsg = randMsg.alfmsg.message[alfrandNum];
+const {greeting, alfmsg} = randMsg;
 const greetBack = ({sessionId, context, entities}) => {
     let {fbid} = session.get(sessionId);
-    console.log(entities);
+    console.log(greeting);
     return new Promise((resolve, reject) => {
       f.getProfile(fbid)
         .then(profile => {
           const {first_name, timezone} = profile;
           let help_text = `${greeting} ${first_name}, ${alfmsg}`;
           let servicesbuttons = f.servicesbuttons(help_text);
-          f.quick(fbid, servicesbuttons);
+          f.btn(fbid, servicesbuttons);
           //console.log(entities.intent[0].value);
         })
-        .catch(error => console.log(error));
+        .catch(error => console.log('Error'+error));
 
       return resolve(context);
     });

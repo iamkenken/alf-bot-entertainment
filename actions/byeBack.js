@@ -5,8 +5,7 @@ const FBeamer = require('../fbeamer');
 const f = new FBeamer(config.FB);
 
 let randMsg = require('../messages');
-let num = Math.floor((Math.random() * Object.keys(randMsg.bye.message).length) + 0);
-let bye = randMsg.bye.message[num];
+let {bye} = randMsg;
 const byeBack = ({sessionId, context, entities}) => {
     let {fbid} = session.get(sessionId);
     console.log(entities);

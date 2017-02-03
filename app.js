@@ -295,7 +295,6 @@ app.post('/', (req, res, next) => {
 					    	default:
 					    }
 					} else {
-						console.log('hey');
 						wit.runActions(sessionId, message.text, context)
 						.then(ctx => {
 							// Delete session if the conversation is over

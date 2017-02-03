@@ -21,11 +21,11 @@ module.exports = (session, f) => {
           }
           else {
             let servicesbuttons = f.servicesbuttons(help_text);
-            f.quick(fbid, servicesbuttons);
+            f.btn(fbid, servicesbuttons);
           }
         } else {
           let servicesbuttons = f.servicesbuttons(help_text);
-          f.quick(fbid, servicesbuttons);
+          f.btn(fbid, servicesbuttons);
         }
         return resolve();
       });

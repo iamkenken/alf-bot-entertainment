@@ -354,7 +354,7 @@ class FBeamer {
 			  },
 			  {
 			    "type":"postback",
-			    "title":"Cable",
+			    "title":"TV/Cable",
 			    "payload":"MENU_CABLE"
 			  }
 			]

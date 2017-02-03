@@ -2,11 +2,7 @@
 const request = require('request');
 const imdb = require('imdb-api');
 let randMsg = require('../messages');
-let greetrandNum = Math.floor((Math.random() * Object.keys(randMsg.greeting.message).length) + 0);
-let alfrandNum = Math.floor((Math.random() * Object.keys(randMsg.alfmsg.message).length) + 0);
-const greeting = randMsg.greeting.message[greetrandNum];
-const alfmsg = randMsg.alfmsg.message[alfrandNum];
-const {moviemsg, tvmsg, eventmsg, theatersmsg, cablemsg} = randMsg;
+const {greeting, alfmsg, moviemsg, tvmsg, eventmsg, theatersmsg, cablemsg, nsmsg, namsg, csmsg, nacsmsg, moremovies, moviesonlinemsg} = randMsg;
 class postbacks {
 
   getstarted(sender, f, API_URL, WEB_URL) {
@@ -52,14 +48,89 @@ class postbacks {
     let text = moviemsg;
     f.btn(sender, f.moviesdata(text));
   }
+  
   theaters(sender, f) {
-    let text = theatersmsg;
-    f.btn(sender, f.theatersdata(text));
+    let movies = [];
+    let moviename = ['A Violent Prosecutor', 'Seklusyon', 'Split', 'The Great Wall', 'xXx: Return of Xander Cage'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, theatersmsg);
+          setTimeout(function(){
+            f.generic(sender, f.nowshowingdatageneric(movies));
+            setTimeout(function(){
+              f.btn(sender, f.nsbtn(nacsmsg));
+            }, 1000);
+          }, 1000);
+        }
+    });
+    }
+  }
+
+  nowshowinglist(sender, f) {
+    f.list(sender, f.nowshowingdata());
+  }
+
+  nowshowinggeneric(sender, f) {
+    let movies = [];
+    let moviename = ['A Violent Prosecutor', 'Seklusyon', 'Split', 'The Great Wall', 'xXx: Return of Xander Cage'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, nsmsg);
+          setTimeout(function(){
+            f.generic(sender, f.nowshowingdatageneric(movies));
+            setTimeout(function(){
+              f.btn(sender, f.nsbtn(nacsmsg));
+            }, 1000);
+          }, 1000);
+        }
+    });
+    }
+  }
+
+  nextattraction(sender, f) {
+    let movies = [];
+    let moviename = ['Why Him?', 'Monster Trucks'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, namsg);
+          setTimeout(function(){
+          f.generic(sender, f.nowshowingdatageneric(movies));
+            setTimeout(function(){
+              f.btn(sender, f.nabtn('script here (required)'));
+            }, 1000);
+          }, 1000);
+        }
+    });
+    }
+  }
+
+  comingsoon(sender, f) {
+    let movies = [];
+    let moviename = ['Resident Evil: The Final Chapter', 'Kung Fu Yoga', 'Sakaling Hindi Makarating'];
+    for(let i = 0, len = moviename.length; i < len; i++) {
+    imdb.getReq({ name: moviename[i]}, (err, things) => {
+        movies.push(things);
+        if(len === movies.length) { 
+          f.txt(sender, csmsg);
+          setTimeout(function(){
+          f.generic(sender, f.csMovies(movies));
+            setTimeout(function(){
+              f.btn(sender, f.csbtn('script here (required)'));
+            }, 1000);
+          },1000);
+        }
+    });
+    }
   }
 
   tv(sender, f) {
-    let text = tvmsg;
-    f.btn(sender, f.tvBtn(text));
+    f.btn(sender, f.tvBtn(tvmsg));
   }
 
   tvLocal(sender, f) {
@@ -73,7 +144,7 @@ class postbacks {
           setTimeout(function(){
             f.generic(sender, f.tvLocalResult(movies));
             setTimeout(function(){
-              f.btn(sender, f.tvLocalBtn('script here...'));
+              f.btn(sender, f.tvLocalBtn('script here (required)'));
             }, 1000);
           }, 1000);
         }
@@ -97,7 +168,7 @@ class postbacks {
           setTimeout(function(){
             f.generic(sender, f.tvLocalResult(movies));
             setTimeout(function(){
-              f.btn(sender, f.tvCableBtn('script here...'));
+              f.btn(sender, f.tvCableBtn('script here (required)'));
             }, 1000);
           }, 1000);
         }
@@ -110,66 +181,7 @@ class postbacks {
     f.generic(sender, f.cableProvidersData());
   }
 
-  nowshowinglist(sender, f) {
-    f.list(sender, f.nowshowingdata());
-  }
-
-  nowshowinggeneric(sender, f) {
-    let movies = [];
-    let moviename = ['A Violent Prosecutor', 'Seklusyon', 'Split', 'The Great Wall', 'xXx: Return of Xander Cage'];
-    for(let i = 0, len = moviename.length; i < len; i++) {
-    imdb.getReq({ name: moviename[i]}, (err, things) => {
-        movies.push(things);
-        if(len === movies.length) { 
-          f.txt(sender, `script/instruction here 🎥`);
-          setTimeout(function(){
-            f.generic(sender, f.nowshowingdatageneric(movies));
-            setTimeout(function(){
-              f.btn(sender, f.nsbtn('script here...'));
-            }, 1000);
-          }, 1000);
-        }
-    });
-    }
-  }
-
-  nextattraction(sender, f) {
-    let movies = [];
-    let moviename = ['Why Him?', 'Monster Trucks'];
-    for(let i = 0, len = moviename.length; i < len; i++) {
-    imdb.getReq({ name: moviename[i]}, (err, things) => {
-        movies.push(things);
-        if(len === movies.length) { 
-          f.txt(sender, `script/instruction here 🎥`);
-          setTimeout(function(){
-          f.generic(sender, f.nowshowingdatageneric(movies));
-            setTimeout(function(){
-              f.btn(sender, f.nabtn('script here...'));
-            }, 1000);
-          }, 1000);
-        }
-    });
-    }
-  }
-
-  comingsoon(sender, f) {
-    let movies = [];
-    let moviename = ['Resident Evil: The Final Chapter', 'Kung Fu Yoga', 'Sakaling Hindi Makarating'];
-    for(let i = 0, len = moviename.length; i < len; i++) {
-    imdb.getReq({ name: moviename[i]}, (err, things) => {
-        movies.push(things);
-        if(len === movies.length) { 
-          f.txt(sender, `script/instruction here 🎥`);
-          setTimeout(function(){
-          f.generic(sender, f.csMovies(movies));
-            setTimeout(function(){
-              f.btn(sender, f.csbtn('script here...'));
-            }, 1000);
-          },1000);
-        }
-    });
-    }
-  }
+  
 
   featuredOnline(sender, f) {
     let movies = [];
@@ -178,11 +190,11 @@ class postbacks {
     imdb.getReq({ name: moviename[i]}, (err, things) => {
         movies.push(things);
         if(len === movies.length) { 
-          f.txt(sender, `Featured Movies 🎥`);
+          f.txt(sender, moviesonlinemsg);
           setTimeout(function() {
           f.generic(sender, f.onlineFeaturedData(movies));
             setTimeout(function(){
-              f.btn(sender, f.onlinebtn('script here...'));
+              f.btn(sender, f.onlinebtn(moremovies));
             }, 1000);
           }, 1000);
         }
@@ -204,11 +216,11 @@ class postbacks {
     imdb.getReq({ name: moviename[i]}, (err, things) => {
         movies.push(things);
         if(len === movies.length) { 
-          f.txt(sender, `script/instruction here 🎥`);
+          f.txt(sender, tvmsg);
           setTimeout(function(){
             f.generic(sender, f.cableFeaturedData(movies));
             setTimeout(function(){
-              f.btn(sender, f.cableBtn('script here..'));
+              f.btn(sender, f.cableBtn(moremovies));
             },1000);
           },1000)
         }
