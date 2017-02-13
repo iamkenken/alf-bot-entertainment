@@ -8,7 +8,7 @@ let randMsg = require('../messages');
 const {greeting, alfmsg} = randMsg;
 const greetBack = ({sessionId, context, entities}) => {
     let {fbid} = session.get(sessionId);
-    console.log(greeting);
+    console.log(entities);
     return new Promise((resolve, reject) => {
       f.getProfile(fbid)
         .then(profile => {

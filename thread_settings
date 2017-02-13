@@ -36,7 +36,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "payload":"GET_STARTED"
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAOMe1sSR38BANcbZBoH7a7GUsaHhYHeVb6CR6aOCVcT686vZAOSHYsSas2Uznm5R3eZCpIToeTyMbC6LOuAgzcycuZAXWFmRSR53DfRcbTrPqrAIeCHCp7MP5RTc5fGPQHosAB0ScrKNNny8oHtl2tvgLnD55GRJyczdYzf4QZDZD"
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAENamUcoqkBAFFZABgxF87xQnuOqw8pmfwDXnxoejx48EIHFv05eMbAChqam9TGMFnZBMpJLRLvcQKMuSEwqtkL6VukRROUiZBY8P2XZAQnyZA2UyvBprmXwgIPIg2h2dr9j6UyY1qbfWVOyLrhir6M9eWsXXZCNXBk2Uha2ejAZDZD"
 
 
 //Messenger extension whitelist domain

@@ -363,6 +363,31 @@ class FBeamer {
 		return data;
 	}
 
+	moviesdataQuick(text) {
+		let data ={
+			"text":text,
+			"quick_replies":[
+			  {
+			    "content_type":"text",
+			    "title":"Theaters",
+			    "payload":"MENU_THEATERS_MOVIES"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"Online",
+			    "payload":"MENU_ONLINE_MOVIES"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"TV-Cable",
+			    "payload":"MENU_CABLE_MOVIES"
+			  }
+			]
+		};
+
+		return data;
+	}
+
 	theatersdata(text) {
 		let data ={
 			"text":text,
@@ -408,6 +433,26 @@ class FBeamer {
 		return data;
 	}
 
+	nsbtnQuick(text) {
+		let data ={
+			"text":text,
+			"quick_replies":[
+			  {
+			    "content_type":"text",
+			    "title":"Next Attraction",
+			    "payload":"MENU_NEXT_ATTRACTION"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"Coming Soon",
+			    "payload":"MENU_COMING_SOON"
+			  }
+			]
+		};
+
+		return data;
+	}
+
 	nabtn(text) {
 		let data ={
 			"text":text,
@@ -428,6 +473,26 @@ class FBeamer {
 		return data;
 	}
 
+	nabtnQuick(text) {
+		let data ={
+			"text":text,
+			"quick_replies":[
+			  {
+			    "content_type":"text",
+			    "title":"Now Showing",
+			    "payload":"MENU_NOW_SHOWING"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"Coming Soon",
+			    "payload":"MENU_COMING_SOON"
+			  }
+			]
+		};
+
+		return data;
+	}
+
 	csbtn(text) {
 		let data ={
 			"text":text,
@@ -439,6 +504,26 @@ class FBeamer {
 			  },
 			  {
 			    "type":"postback",
+			    "title":"Next Attraction",
+			    "payload":"MENU_NEXT_ATTRACTION"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	csbtnQuick(text) {
+		let data ={
+			"text":text,
+			"quick_replies":[
+			  {
+			    "content_type":"text",
+			    "title":"Now Showing",
+			    "payload":"MENU_NOW_SHOWING"
+			  },
+			  {
+			    "content_type":"text",
 			    "title":"Next Attraction",
 			    "payload":"MENU_NEXT_ATTRACTION"
 			  }
@@ -489,6 +574,152 @@ class FBeamer {
 				}
 			]
 		}
+
+		return data;
+	}
+
+	moviesResults() {
+		let data = [
+			{
+				"title": "John Wick: Chapter 2",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWNiZDBiNTgtNzYyNi00NjZkLTkxZjctNjUxZTNmMWZjMzk2XkEyXkFqcGdeQXVyNTM2NjI3NjE@._V1_.jpg",
+				"subtitle": "After returning to the criminal underworld to repay a...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://www.imdb.com/video/imdb/vi1127331353?playlistId=tt4425200&ref_=tt_ov_vi",
+						"webview_height_ratio": "full"
+					},
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			},
+			{
+				"title": "Kung-Fu Yoga",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BNWY5NDRjZWQtYTRlMy00OGY5LWJkZWYtM2JhYzQxOGNlODQ5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjg0OTk1NTE@._V1_.jpg",
+				"subtitle": "Two professors team up to locate a lost...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://www.imdb.com/video/imdb/vi1225963033?playlistId=tt4217392&ref_=tt_ov_vi",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			},
+			{
+				"title": "Resident Evil: The Final Chapter",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0Mzc2OTQ0Ml5BMl5BanBnXkFtZTgwOTQ5MjE4MDI@._V1_UX182_CR0,0,182,268_AL_.jpg",
+				"subtitle": "Alice returns to where the nightmare began...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://www.imdb.com/video/imdb/vi3891508761?playlistId=tt2592614&ref_=tt_ov_vi",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			}
+		];
+
+		return data;
+	}
+
+	csMoviesResults() {
+		let data = [
+			{
+				"title": "John Wick: Chapter 2",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWNiZDBiNTgtNzYyNi00NjZkLTkxZjctNjUxZTNmMWZjMzk2XkEyXkFqcGdeQXVyNTM2NjI3NjE@._V1_.jpg",
+				"subtitle": "After returning to the criminal underworld to repay a...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://www.imdb.com/video/imdb/vi1127331353?playlistId=tt4425200&ref_=tt_ov_vi",
+						"webview_height_ratio": "full"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			},
+			{
+				"title": "Kung-Fu Yoga",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BNWY5NDRjZWQtYTRlMy00OGY5LWJkZWYtM2JhYzQxOGNlODQ5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjg0OTk1NTE@._V1_.jpg",
+				"subtitle": "Two professors team up to locate a lost...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://www.imdb.com/video/imdb/vi1225963033?playlistId=tt4217392&ref_=tt_ov_vi",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			},
+			{
+				"title": "Resident Evil: The Final Chapter",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0Mzc2OTQ0Ml5BMl5BanBnXkFtZTgwOTQ5MjE4MDI@._V1_UX182_CR0,0,182,268_AL_.jpg",
+				"subtitle": "Alice returns to where the nightmare began...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "See Trailer",
+						"url": "https://www.imdb.com/video/imdb/vi3891508761?playlistId=tt2592614&ref_=tt_ov_vi",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			}
+		];
 
 		return data;
 	}
@@ -610,6 +841,8 @@ class FBeamer {
 		return data;
 	}
 
+
+
 	cableProvidersData() {
 		let data = [
 			{
@@ -707,14 +940,33 @@ class FBeamer {
 		return data;
 	}
 
-	tvShowsFeaturedData(movies) {
-		let data = [];
-		//console.log(movies.length);
-		for(let i = 0, len = movies.length; i < len; i++) {
-		data.push({
-				"title": movies[i].title,
-				"image_url":movies[i].poster,
-				"subtitle": movies[i].plot,
+	cableBtnQuick(text) {
+		let data ={
+			"text":text,
+			"quick_replies":[
+			  {
+			    "content_type":"text",
+			    "title":"See Full List",
+			    "url":"https://google.com"
+			  },
+			  {
+			    "content_type":"text",
+			    "title":"Select Provider",
+			    "payload":"MENU_CABLE_PROVIDERS"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	tvShowsFeaturedData() {
+
+		let data = [
+			{
+				"title": "John Wick: Chapter 2",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWNiZDBiNTgtNzYyNi00NjZkLTkxZjctNjUxZTNmMWZjMzk2XkEyXkFqcGdeQXVyNTM2NjI3NjE@._V1_.jpg",
+				"subtitle": "After returning to the criminal underworld to repay a...\nRating: ★★★★☆",
 				"buttons":[
 					{
 						"type": "web_url",
@@ -729,9 +981,49 @@ class FBeamer {
 						"webview_height_ratio": "tall"
 					}
 				]
-			});
-		}
+			},
+			{
+				"title": "Kung-Fu Yoga",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BNWY5NDRjZWQtYTRlMy00OGY5LWJkZWYtM2JhYzQxOGNlODQ5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjg0OTk1NTE@._V1_.jpg",
+				"subtitle": "Two professors team up to locate a lost...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			},
+			{
+				"title": "Resident Evil: The Final Chapter",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0Mzc2OTQ0Ml5BMl5BanBnXkFtZTgwOTQ5MjE4MDI@._V1_UX182_CR0,0,182,268_AL_.jpg",
+				"subtitle": "Alice returns to where the nightmare began...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "Movie Info",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			}
+		];
+
 		return data;
+
 	}
 
 	onlinebtn(text) {
@@ -824,6 +1116,26 @@ class FBeamer {
 			  },
 			  {
 			    "type":"postback",
+			    "title":"Cable Channels",
+			    "payload":"MENU_TV_CABLE"
+			  }
+			]
+		};
+
+		return data;
+	}
+
+	tvBtnQuick(text) {
+		let data ={
+			"text":text,
+			"quick_replies":[
+			  {
+			    "content_type":"text",
+			    "title":"Local TV",
+			    "payload":"MENU_TV_LOCAL"
+			  },
+			  {
+			    "content_type":"text",
 			    "title":"Cable Channels",
 			    "payload":"MENU_TV_CABLE"
 			  }
@@ -1018,13 +1330,12 @@ class FBeamer {
 	}
 
 	tvLocalResult(movies) {
-		let data = [];
-		//console.log(movies.length);
-		for(let i = 0, len = movies.length; i < len; i++) {
-			data.push({
-				"title": movies[i].title,
-				"image_url":movies[i].poster,
-				"subtitle": movies[i].plot.substring(0, 50)+'...\nRating: ★★★★☆',
+
+		let data = [
+			{
+				"title": "John Wick: Chapter 2",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWNiZDBiNTgtNzYyNi00NjZkLTkxZjctNjUxZTNmMWZjMzk2XkEyXkFqcGdeQXVyNTM2NjI3NjE@._V1_.jpg",
+				"subtitle": "After returning to the criminal underworld to repay a...\nRating: ★★★★☆",
 				"buttons":[
 					{
 						"type": "web_url",
@@ -1039,8 +1350,47 @@ class FBeamer {
 						"webview_height_ratio": "tall"
 					}
 				]
-			});
-		}
+			},
+			{
+				"title": "Kung-Fu Yoga",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BNWY5NDRjZWQtYTRlMy00OGY5LWJkZWYtM2JhYzQxOGNlODQ5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjg0OTk1NTE@._V1_.jpg",
+				"subtitle": "Two professors team up to locate a lost...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "See Details",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			},
+			{
+				"title": "Resident Evil: The Final Chapter",
+				"image_url": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTc0Mzc2OTQ0Ml5BMl5BanBnXkFtZTgwOTQ5MjE4MDI@._V1_UX182_CR0,0,182,268_AL_.jpg",
+				"subtitle": "Alice returns to where the nightmare began...\nRating: ★★★★☆",
+				"buttons":[
+					{
+						"type": "web_url",
+						"title": "Where to Watch",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					},
+					{
+						"type": "web_url",
+						"title": "See Details",
+						"url": "https://google.com",
+						"webview_height_ratio": "tall"
+					}
+				]
+			}
+		];
+
 		return data;
 	}
 

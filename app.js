@@ -38,9 +38,6 @@ const wit = new Wit({
 	actions
 });
 
-//imdb api
-const imdb = require('imdb-api');
-
 // Register the webhooks
 app.get('/', (req, res, next) => {
 	f.registerHook(req, res);
@@ -55,15 +52,16 @@ app.post('/', (req, res, next) => {
 			postback,
 			message,
 		} = msg;
-
+		//console.log(res);
 		//turn typing indicators on
 		f.senderAction(sender);
 
 		//Custom Payload
-		if(postback) {
+		if(postback || message.quick_reply) {
+			let user_defined_payload = postback ? postback.payload : message.quick_reply.payload;
 			let sessionId = session.init(sender);
 			let {context} = session.get(sessionId);
-			switch(postback.payload) {
+			switch(user_defined_payload) {
 				case 'GET_STARTED':
 					p.getstarted(sender, f, API_URL, WEB_URL);
 					context.action = 'get_started';
@@ -74,10 +72,81 @@ app.post('/', (req, res, next) => {
 					context.action = 'movies';
 					session.update(sessionId, context);
 				break;
-				case 'MENU_THEATERS':
+				case 'MENU_THEATERS_MOVIES':
 					p.theaters(sender, f);
 					context.action = 'movies';
 					session.update(sessionId, context);
+				break;
+				case 'MENU_NOW_SHOWING':
+					p.nowshowinggeneric(sender, f);
+					context.action = 'now_showing';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_NEXT_ATTRACTION':
+					p.nextattraction(sender, f);
+					context.action = 'now_showing';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_COMING_SOON':
+					p.comingsoon(sender, f);
+					context.action = 'coming_soon';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_ONLINE_MOVIES':
+					p.featuredOnline(sender, f);
+					context.action = 'online';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_ONLINE_PROVIDERS':
+					p.onlineProviders(sender, f);
+					context.action = 'online';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_CABLE_MOVIES':
+					p.cableFeatured(sender, f);
+					context.action = 'cable';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_CABLE_PROVIDERS':
+					p.cableProviders(sender, f);
+					context.action = 'cable';
+					session.update(sessionId, context);
+				break;
+				case 'MENU_EVENTS':
+					p.events(sender, f);
+				break;
+				case 'MENU_MUSIC':
+					p.eventsCategories(sender, f, 'music');
+				break;
+				case 'MENU_SHOWS':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_CONVENTIONS':
+					p.eventsCategories(sender, f, 'conventions');
+				break;
+				case 'MENU_SPORTS':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_CAMPUS':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_EVENT_OTHER':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_GIG':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_CONCERT':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_FAIRS':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_TALKS':
+					p.showEvents(sender, f);
+				break;
+				case 'MENU_CONFERENCES':
+					p.showEvents(sender, f);
 				break;
 				case 'MENU_TV':
 					p.tv(sender, f);
@@ -100,213 +169,27 @@ app.post('/', (req, res, next) => {
 				case 'MENU_TV_CABLE_PROVIDERS':
 					p.tvCableProviders(sender, f);
 				break;
-				case 'MENU_NOW_SHOWING':
-					p.nowshowinggeneric(sender, f);
-					context.action = 'now_showing';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_NEXT_ATTRACTION':
-					p.nextattraction(sender, f);
-					context.action = 'now_showing';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_COMING_SOON':
-					p.comingsoon(sender, f);
-					context.action = 'coming_soon';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_ONLINE':
-					p.featuredOnline(sender, f);
-					context.action = 'online';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_ONLINE_PROVIDERS':
-					p.onlineProviders(sender, f);
-					context.action = 'online';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_CABLE':
-					p.cableFeatured(sender, f);
-					context.action = 'cable';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_CABLE_PROVIDERS':
-					p.cableProviders(sender, f);
-					context.action = 'cable';
-					session.update(sessionId, context);
-				break;
-				case 'MENU_EVENTS':
-					p.events(sender, f);
-				break;
-				case 'MENU_MUSIC':
-					p.eventsCategories(sender, f, 'music');
-				break;
-				case 'MENU_SHOWS':
-					p.eventsCategories(sender, f, 'shows');
-				break;
-				case 'MENU_CONVENTIONS':
-					p.eventsCategories(sender, f, 'conventions');
-				break;
-				case 'MENU_SPORTS':
-					p.eventsCategories(sender, f, 'sports');
-				break;
-				case 'MENU_CAMPUS':
-					p.eventsCategories(sender, f, 'campus');
-				break;
-				case 'MENU_EVENT_OTHER':
-					p.eventsCategories(sender, f, 'other');
-				break;
 				default:
-					
+					f.txt(sender, 'Sorry, please check back later.');
+				break;
 			}
-			console.log(context);
-		}
-
-		if(message) {
+		} else if(message && message.text !== '') {
 			let sessionId = session.init(sender);
 			let {context} = session.get(sessionId);
 			let msgtxt = message.text.toLowerCase();
 
-			switch(msgtxt) {
-				case 'movies':
-				case 'movie':
-					//f.txt(sender, 'movies');
-					p.movies(sender, f);
-					context.action = 'movies';
-					session.update(sessionId, context);
-				break;
-				case 'tv shows':
-				case 'tv show':
-					p.tv(sender, f);
-					context.action = 'tv';
-					session.update(sessionId, context);
-				break;
-				case 'events':
-				case 'event':
-					p.events(sender, f);
-					context.action = 'events';
-					context.eventLocation = '';
-					session.update(sessionId, context);
-				break;
-				case 'music':
-					p.eventsCategories(sender, f, 'music');
-				break;
-				case 'shows':
-					p.showEvents(sender, f);
-				break;
-				case 'conventions':
-					p.eventsCategories(sender, f, 'conventions');
-				break;
-				case 'sports & lifestyle':
-					p.showEvents(sender, f);
-				break;
-				case 'campus':
-					p.showEvents(sender, f);
-				break;
-				case 'others':
-					p.showEvents(sender, f);
-				break;
-				case 'gig':
-					p.showEvents(sender, f);
-				break;
-				case 'concert':
-					p.showEvents(sender, f);
-				break;
-				case 'fairs & exhibit':
-					p.showEvents(sender, f);
-				break;
-				case 'talks & workshop':
-					p.showEvents(sender, f);
-				break;
-				case 'conferences':
-					p.showEvents(sender, f);
-				break;
-				case 'now showing':
-					p.nowshowinggeneric(sender, f);
-					context.action = 'now_showing';
-					session.update(sessionId, context);
-				break;
-				case 'next attraction':
-					p.nextattraction(sender, f);
-					context.action = 'now_showing';
-					session.update(sessionId, context);
-				break;
-				case 'coming soon':
-					p.comingsoon(sender, f);
-					context.action = 'coming_soon';
-					session.update(sessionId, context);
-				break;
-				case 'q':
-				case 'quit':
-					f.txt(sender, 'Cool, You can use the blue line on the left corner to start again.');
-					session.delete(sessionId);
-				break;
-				default:
-
-					if(context && context.action) {
-						console.log(context);
-					    switch (context.action) {
-					    	case 'movies':
-					    	case 'now_showing':
-					    	case 'coming_soon':
-					    		imdb.getReq({ name: msgtxt}, (err, info) => {
-									if(info) {
-										let title = info.title,	plot = info.plot, genres = info.genres, director = info.director, 
-										actors = info.actors, rating = info.rating, poster = info.poster;
-										console.log(info);
-										f.img(sender, poster) ;
-										setTimeout(function() { 
-											f.txt(sender, `Title: ${title}\nGenres: ${genres}\nDirector: ${director}\nCasts: ${actors}\nRating: ${rating}`); 
-										}, 2000);
-									}
-
-									if(err) {
-										f.txt(sender, ':( Ooops...can\'t find that movie. are you sure that movie exist? Please check your spelling.');
-									}
-							    });
-					    	break;
-					    	case 'events':
-					    		if(context.eventType === '') {
-					    			p.showEvents(sender, f);
-					    			// setTimeout(function(){
-					    			// 	p.btnEvents(sender, f);
-					    			// }, 2000);
-					    			context.eventType = message.text;
-					    			session.update(sessionId, context);
-					    		}
-					    	break;
-					    	case 'tv':
-					    		imdb.getReq({ name: msgtxt}, (err, info) => {
-									if(info) {
-										let title = info.title,	plot = info.plot, genres = info.genres, director = info.director, 
-										actors = info.actors, rating = info.rating, poster = info.poster;
-										console.log(info);
-										f.img(sender, poster) ;
-										setTimeout(function() { 
-											f.txt(sender, `Title: ${title}\nGenres: ${genres}\nDirector: ${director}\nCasts: ${actors}\nRating: ${rating}`); 
-										}, 2000);
-									}
-
-									if(err) {
-										f.txt(sender, ':( Ooops...can\'t find that tv show. are you sure that show exist? Please check your spelling.');
-									}
-							    });
-					    	break;
-					    	default:
-					    }
-					} else {
-						wit.runActions(sessionId, message.text, context)
-						.then(ctx => {
-							// Delete session if the conversation is over
-							ctx.jobDone ? session.delete(sessionId) : session.update(sessionId, ctx);
-							//console.log(ctx);
-						})
-						.catch(error => console.log(`Error: ${error}`));
-					}
-			}	
+			wit.runActions(sessionId, message.text, context)
+			.then(ctx => {
+				// Delete session if the conversation is over
+				ctx.jobDone ? session.delete(sessionId) : session.update(sessionId, ctx);
+				//console.log(ctx);
+			})
+			.catch(error => console.log(`Error: ${error}`));
+		} else {
+			f.txt(sender, 'Sorry, please check back laterx.')
 		}
 
-		
+
 	});
 	return next();
 });

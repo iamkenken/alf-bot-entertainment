@@ -1,10 +1,10 @@
 {
 	"WIT_ACCESS_TOKEN": "UGPPO2GN32NK32XHBML7OZP5VE2TPSUE",
 	"FB": {
-		"PAGE_ACCESS_TOKEN_": "EAAOMe1sSR38BANcbZBoH7a7GUsaHhYHeVb6CR6aOCVcT686vZAOSHYsSas2Uznm5R3eZCpIToeTyMbC6LOuAgzcycuZAXWFmRSR53DfRcbTrPqrAIeCHCp7MP5RTc5fGPQHosAB0ScrKNNny8oHtl2tvgLnD55GRJyczdYzf4QZDZD",
+		"PAGE_ACCESS_TOKEN_": "EAAD5YCTOEswBADq1G7qtdJHPn5ZCZCMgfGDZBLwzQ0Ywy3AZCwRWMxM5iPHIQI0Tpl4bZAIRRlZAelSpm14jkpmMvPMoMI6jXyTNkpZBdXTf4YyvtFlMiiL5pN3vbotgvrOVO4r66Gccuejz7Gck7s0nnGrViMtZCSMdKZCjOvrTyJAZDZD",
 		"PAGE_ACCESS_TOKEN": "EAAFQEb6oc8gBAKj9ij1MCw3TuUGpLDtfSJ5jZBZAafh2qro80QtE7NwqFeAGYbZB2BCUC2VARQZC2ysdHHL0fBWOdxh50OEjca0xTKwrx3SQz0L6S1Vh88zNuJFlWfdJ8yc2DqWVKZA6wMjZB5HQwXuoUGopm9KbWqMFagxlxlYQZDZD",
 		"VERIFY_TOKEN": "4812872483e5adeba0695af233d00b92fa58d039ae90329e",
-		"APP_SECRET_": "70eaad3088e96f5d8ed36af28eecf885",
+		"APP_SECRET_": "b8fc560cdb81e248def03cc56c278099",
 		"APP_SECRET": "06878c14d50befbd677bb793e5e45af3"
 	},
 	"API_URL_": "http://localhost/alfafusion/directory/public/api/v1",
@@ -12,8 +12,5 @@
 	"WEB_URL_LOCAL": "http://localhost/alfafusion/directory/public",
 	"WEB_URL": "https://dev.alfafusion.com/fb-chatbot/alf/directory/public",
 	"DIR_IMAGE_URL_": "http://localhost/alfafusion/directory/public/images/dir_logo",
-	"DIR_IMAGE_URL": "http://dev.alfafusion.com/fb-chatbot/alf/directory/public/images/dir_logo",
-	"OWM_KEY": "d14b5d9ea530ef1c8faa46cbf983c020",
-	"API_URL_CLASSIFIEDS_": "http://localhost/alfafusion/classifieds-bot/public/api/v1/classifieds",
-	"API_URL_CLASSIFIEDS": "http://dev.alfafusion.com/classifieds-bot/public/api/v1/classifieds"
+	"DIR_IMAGE_URL": "http://dev.alfafusion.com/fb-chatbot/alf/directory/public/images/dir_logo"
 }

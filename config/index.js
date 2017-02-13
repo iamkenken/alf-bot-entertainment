@@ -9,8 +9,7 @@ if(process.env.NODE_ENV === 'production') {
 		},
 		"API_URL": process.env.API_URL,
 		"WEB_URL": process.env.WEB_URL,
-		"DIR_IMAGE_URL": process.env.DIR_IMAGE_URL,
-		"API_URL_CLASSIFIEDS": process.env.API_URL_CLASSIFIEDS,
+		"DIR_IMAGE_URL": process.env.DIR_IMAGE_URL
 	}
 } else {
 	module.exports = require('./development.json');
